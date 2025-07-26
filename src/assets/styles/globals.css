@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+}
+
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+}

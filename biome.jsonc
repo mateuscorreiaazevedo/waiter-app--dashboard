@@ -11,6 +11,20 @@
       "arrowParentheses": "asNeeded"
     }
   },
+  "files": {
+    "includes": [
+      "./src/**/*"
+    ],
+    "ignoreUnknown": true
+  },
+  "css": {
+    "formatter": {
+      "enabled": false
+    },
+    "linter": {
+      "enabled": false
+    }
+  },
   "linter": {
     "rules": {
       "style": {
@@ -23,6 +37,9 @@
       },
       "performance": {
         "noImgElement": "off"
+      },
+      "correctness": {
+        "useHookAtTopLevel": "off"
       }
     }
   }

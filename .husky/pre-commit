@@ -1,1 +1,1 @@
-yarn lint:fix
+npx @biomejs/biome check --write ./src

@@ -1,68 +1,68 @@
 @import "tailwindcss";
 
+/* biome-disable-next-line at-rule-no-unknown */
 @theme {
   /* Fonts */
   --font-sans: "Inter", sans-serif;
 
   /* Colors */
-  --color-primary: #D73035;
-  --color-primary-dark: #8A1114;
-  --color-secondary: #FFABAD;
+  --color-primary: #d73035;
+  --color-primary-dark: #8a1114;
+  --color-secondary: #ffabad;
 
   --color-gray-900: #333333;
   --color-gray-700: #666666;
   --color-gray-500: #999999;
-  --color-gray-300: #CCCCCC;
-  --color-gray-100: #F2F2F2;
-  --color-white: #FFFFFF;
+  --color-gray-300: #cccccc;
+  --color-gray-100: #f2f2f2;
+  --color-white: #ffffff;
 
   /* Semantic colors */
-  --color-danger: #D73035;
-  --color-danger-dark: #8A1114;
-  --color-accent: #FFABAD;
+  --color-danger: #d73035;
+  --color-danger-dark: #8a1114;
+  --color-accent: #ffabad;
 
   --color-text: #333333;
   --color-text-foreground: #f2f2f2;
 
   /* Typography */
   /* Display */
-  --text-display: 4em;
+  --text-display: 4em; /* 64px */
   --leading-display: 100%;
 
   /* Headings */
-  --text-h1: 3em;
+  --text-h1: 3em; /* 48px */
   --leading-h1: 100%;
 
-  --text-h2: 2.5em;
+  --text-h2: 2.5em; /* 40px */
   --leading-h2: 120%;
 
-  --text-h3: 2em;
+  --text-h3: 2em; /* 32px */
   --leading-h3: 100%;
 
-  --text-h4: 1.5em;
+  --text-h4: 1.5em; /* 24px */
   --leading-h4: 107%;
 
-  --text-h5: 1.25em;
+  --text-h5: 1.25em; /* 20px */
   --leading-h5: 120%;
 
-  --text-h6: 1em;
+  --text-h6: 1em; /* 16px */
   --leading-h6: 125%;
 
   /* Body Text */
-  --text-body-large: 1.125em;
+  --text-body-large: 1.125em; /* 18px */
   --leading-body-large: 150%;
 
-  --text-body-medium: 1em;
+  --text-body-medium: 1em; /* 16px */
   --leading-body-medium: 150%;
 
-  --text-body-small: 0.875em;
+  --text-body-small: 0.875em; /* 14px */
   --leading-body-small: 150%;
-
 }
-
 
 @layer base {
   body {
-    @apply font-sans antialiased bg-gray-100;
+    /* biome-disable-next-line at-rule-no-unknown */
+    @apply font-sans antialiased bg-gray-100 text-text;
   }
 }

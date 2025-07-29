@@ -3,11 +3,66 @@
 @theme {
   /* Fonts */
   --font-sans: "Inter", sans-serif;
+
+  /* Colors */
+  --color-primary: #D73035;
+  --color-primary-dark: #8A1114;
+  --color-secondary: #FFABAD;
+
+  --color-gray-900: #333333;
+  --color-gray-700: #666666;
+  --color-gray-500: #999999;
+  --color-gray-300: #CCCCCC;
+  --color-gray-100: #F2F2F2;
+  --color-white: #FFFFFF;
+
+  /* Semantic colors */
+  --color-danger: #D73035;
+  --color-danger-dark: #8A1114;
+  --color-accent: #FFABAD;
+
+  --color-text: #333333;
+  --color-text-foreground: #f2f2f2;
+
+  /* Typography */
+  /* Display */
+  --text-display: 4em;
+  --leading-display: 100%;
+
+  /* Headings */
+  --text-h1: 3em;
+  --leading-h1: 100%;
+
+  --text-h2: 2.5em;
+  --leading-h2: 120%;
+
+  --text-h3: 2em;
+  --leading-h3: 100%;
+
+  --text-h4: 1.5em;
+  --leading-h4: 107%;
+
+  --text-h5: 1.25em;
+  --leading-h5: 120%;
+
+  --text-h6: 1em;
+  --leading-h6: 125%;
+
+  /* Body Text */
+  --text-body-large: 1.125em;
+  --leading-body-large: 150%;
+
+  --text-body-medium: 1em;
+  --leading-body-medium: 150%;
+
+  --text-body-small: 0.875em;
+  --leading-body-small: 150%;
+
 }
 
 
 @layer base {
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased bg-gray-100;
   }
 }

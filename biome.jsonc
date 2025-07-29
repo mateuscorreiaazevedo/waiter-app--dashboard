@@ -20,6 +20,9 @@
           "options": {}
         },
         "useFilenamingConvention": "off"
+      },
+      "performance": {
+        "noImgElement": "off"
       }
     }
   }

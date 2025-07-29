@@ -1,4 +1,4 @@
-import { Header } from '@/components/layouts/header';
+import { Header } from '@/components/layout/header';
 import '../assets/styles/globals.css';
 import { ListOrders } from '@/components/features/orders/list-orders';
 

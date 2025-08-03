@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useMemo } from 'react';
 import type { Order, OrderStatus } from '@/api/types/orders';
+import { Button } from '@/components/ui';
 
 type OrderModalProps = {
   visible: boolean;
@@ -148,21 +149,17 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
               </section>
             </article>
             <footer className="flex items-center justify-between">
-              <button
-                className="cursor-pointer rounded-full px-4 py-2 text-body-medium text-primary transition-all hover:bg-gray-100 hover:text-primary-dark"
-                onClick={onClose}
-                type="button"
-              >
+              <Button onClick={onClose} type="button" variant="secondary">
                 Cancelar pedido
-              </button>
+              </Button>
               {order.status !== 'DONE' && (
-                <button
-                  className="cursor-pointer rounded-full bg-primary px-4 py-2 font-bold text-body-medium text-white transition-all hover:bg-primary-dark hover:text-white"
+                <Button
                   onClick={handleActionModal}
                   type="button"
+                  variant="primary"
                 >
                   {buttonLabelByOrderStatus[order?.status]}
-                </button>
+                </Button>
               )}
             </footer>
           </motion.div>

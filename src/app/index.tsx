@@ -6,7 +6,7 @@ export function App() {
   return (
     <>
       <Header />
-      <main className="container mx-auto my-10 flex max-w-7xl">
+      <main className="container mx-auto my-10 flex max-w-7xl flex-col">
         <BoardOrders />
       </main>
     </>

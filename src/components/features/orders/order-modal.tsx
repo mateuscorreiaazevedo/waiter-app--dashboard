@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { useMemo } from 'react';
 import { Button } from '@/components/ui';
 import type { Order, OrderStatus } from '@/types/features/orders';
+import { CurrencyHelper } from '@/util/helpers';
 
 type OrderModalProps = {
   visible: boolean;
@@ -131,7 +132,7 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
                             {item.product.name}
                           </strong>
                           <span className="font-medium text-body-small text-gray-500">
-                            R$ {item.product.price.toFixed(2)}
+                            {CurrencyHelper.formatToBRL(item.product.price)}
                           </span>
                         </div>
                       </div>
@@ -143,7 +144,7 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
                     Total
                   </span>
                   <strong className="font-bold text-body-medium leading-h5">
-                    R$ {totalPrice.toFixed(2)}
+                    {CurrencyHelper.formatToBRL(totalPrice)}
                   </strong>
                 </div>
               </section>

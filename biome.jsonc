@@ -42,6 +42,9 @@
       },
       "correctness": {
         "useHookAtTopLevel": "off"
+      },
+      "complexity": {
+        "noStaticOnlyClass": "off"
       }
     }
   }

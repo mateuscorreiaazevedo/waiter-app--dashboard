@@ -7,7 +7,7 @@ import type {
   IHttpClientService,
 } from './http-protocols';
 
-export class HttpClientService implements IHttpClientService {
+export class AxiosHttpClientService implements IHttpClientService {
   private instance: AxiosInstance;
 
   constructor(BASE_URL: string = env.VITE_APP_BASE_URL) {

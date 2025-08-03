@@ -5,7 +5,7 @@ import { OrderModal } from './order-modal';
 export type BoardOrderProps = {
   icon: string;
   title: string;
-  orders: Order[];
+  orders?: Order[];
 };
 
 export function BoardOrderItem({ icon, title, orders }: BoardOrderProps) {
@@ -28,10 +28,10 @@ export function BoardOrderItem({ icon, title, orders }: BoardOrderProps) {
         <header className="flex items-center justify-center gap-2 p-2">
           <span>{icon}</span>
           <strong> {title}</strong>
-          <span>({orders.length})</span>
+          <span>({orders?.length})</span>
         </header>
 
-        {!!orders.length &&
+        {!!orders?.length &&
           orders.map(order => (
             <button
               className="h-32 space-y-1 rounded-lg border border-gray-300/40 bg-white transition-all hover:bg-white/80 hover:shadow-sm"

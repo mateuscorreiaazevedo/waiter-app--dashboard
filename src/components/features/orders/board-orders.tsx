@@ -1,4 +1,4 @@
-import type { Order } from '@/api/types/orders';
+import type { Order } from '@/types/features/orders';
 import { BoardOrderItem } from './board-order-item';
 
 export function BoardOrders() {

@@ -34,7 +34,8 @@
           "options": {}
         },
         "useFilenamingConvention": "off",
-        "noParameterProperties": "off"
+        "noParameterProperties": "off",
+        "noNonNullAssertion": "off"
       },
       "performance": {
         "noImgElement": "off"

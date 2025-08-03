@@ -1,6 +1,11 @@
 import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { env } from '@/config';
+import type {
+  HttpRequest,
+  HttpResponse,
+  IHttpClientService,
+} from './http-protocols';
 
 export class HttpClientService implements IHttpClientService {
   private instance: AxiosInstance;
@@ -10,6 +15,13 @@ export class HttpClientService implements IHttpClientService {
       baseURL: BASE_URL,
     });
   }
+
+  jwtInterceptor(token: string | null): void {
+    this.instance.defaults.headers.common.Authorization = token
+      ? `Bearer ${token}`
+      : null;
+  }
+
   async request<TResponse = unknown, TBody = unknown>(
     request: HttpRequest<TBody>
   ): Promise<HttpResponse<TResponse>> {
@@ -25,7 +37,8 @@ export class HttpClientService implements IHttpClientService {
         params,
       });
     } catch (err) {
-      axiosResponse = (err as AxiosError).response as AxiosResponse<TResponse>;
+      const { response } = err as AxiosError<TResponse>;
+      axiosResponse = response!;
     }
 
     return {

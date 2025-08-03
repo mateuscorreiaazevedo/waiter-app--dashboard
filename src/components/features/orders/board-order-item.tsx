@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Order } from '@/api/types/orders';
+import type { Order } from '@/types/features/orders';
 import { OrderModal } from './order-modal';
 
 export type BoardOrderProps = {

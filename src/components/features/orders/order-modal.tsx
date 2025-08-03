@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useMemo } from 'react';
-import type { Order, OrderStatus } from '@/api/types/orders';
 import { Button } from '@/components/ui';
+import type { Order, OrderStatus } from '@/types/features/orders';
 
 type OrderModalProps = {
   visible: boolean;

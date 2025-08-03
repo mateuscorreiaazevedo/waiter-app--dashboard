@@ -8,11 +8,10 @@ type Props = {
 
 export function OrderModalItems({ products }: Props) {
   const totalPrice = useMemo(() => {
-    return (
-      products?.reduce((total, item) => {
-        return total + item.product.price * item.quantity;
-      }, 0) || 0
-    );
+    const total = products.reduce((acc, item) => {
+      return acc + item.product.price * item.quantity;
+    }, 0);
+    return total;
   }, [products]);
 
   return (

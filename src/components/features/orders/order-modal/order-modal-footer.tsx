@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui';
+import { Button } from '@/modules/core/components/ui';
 import type { OrderStatus } from '@/types/features/orders';
 
 type Props = {

@@ -33,6 +33,7 @@
           "fix": "safe",
           "options": {}
         },
+        "noEnum": "off",
         "useFilenamingConvention": "off",
         "noParameterProperties": "off",
         "noNonNullAssertion": "off"

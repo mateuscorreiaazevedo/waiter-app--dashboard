@@ -1,6 +1,6 @@
 import { type HttpResponse, HttpStatusCode } from '@/services/http';
 
-export function httpHandlerHelper<T = unknown>(httpResponse: HttpResponse<T>) {
+export function handleHttpUtil<T = unknown>(httpResponse: HttpResponse<T>) {
   const { statusCode, body } = httpResponse;
 
   switch (statusCode) {

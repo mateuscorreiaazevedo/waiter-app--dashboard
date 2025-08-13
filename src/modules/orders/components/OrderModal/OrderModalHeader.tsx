@@ -8,7 +8,7 @@ type Props = {
 export function OrderModalHeader({ orderTable, onClose }: Props) {
   return (
     <header className="flex items-center justify-between">
-      <h3 className="font-semibold text-h4 text-text leading-h2">
+      <h3 className="font-semibold text-lg text-text leading-h2">
         Mesa {orderTable.padStart(2, '0')}
       </h3>
       <button

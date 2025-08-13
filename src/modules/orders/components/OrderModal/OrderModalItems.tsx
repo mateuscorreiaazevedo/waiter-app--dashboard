@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { CurrencyHelper } from '@/modules/core';
+import { setUriImagePath } from '@/modules/products';
 import type { OrderProductModel } from '../../models/OrderProduct';
 
 type Props = {
@@ -16,7 +17,7 @@ export function OrderModalItems({ products }: Props) {
 
   return (
     <section className="flex flex-col gap-4">
-      <span className="font-medium text-body-small text-gray-500">Itens</span>
+      <span className="font-medium text-gray-500 text-sm">Itens</span>
       <ul className="flex flex-col gap-4">
         {products.map(item => (
           <li className="flex items-center gap-3" key={item.product._id}>
@@ -26,18 +27,18 @@ export function OrderModalItems({ products }: Props) {
                 className="h-12 w-10 flex-1 rounded-md object-cover"
                 loading="lazy"
                 // TODO: Change src to API's BASE_URL + item.product.imagePath
-                src={item.product.imagePath}
+                src={setUriImagePath(item.product.imagePath)}
               />
             </div>
             <div className="flex gap-2">
-              <span className="font-medium text-body-small text-gray-500">
+              <span className="font-medium text-gray-500 text-sm">
                 {item.quantity}x
               </span>
               <div className="flex flex-col items-start gap-1">
-                <strong className="font-semibold text-body-medium">
+                <strong className="font-semibold text-base">
                   {item.product.name}
                 </strong>
-                <span className="font-medium text-body-small text-gray-500">
+                <span className="font-medium text-gray-500 text-sm">
                   {CurrencyHelper.formatToBRL(item.product.price)}
                 </span>
               </div>
@@ -46,10 +47,10 @@ export function OrderModalItems({ products }: Props) {
         ))}
       </ul>
       <div className="flex items-center justify-between">
-        <span className="font-medium text-body-small text-gray-500 leading-body-small">
+        <span className="font-medium text-gray-500 text-sm leading-body-small">
           Total
         </span>
-        <strong className="font-bold text-body-medium leading-h5">
+        <strong className="font-bold text-base leading-h5">
           {CurrencyHelper.formatToBRL(totalPrice)}
         </strong>
       </div>

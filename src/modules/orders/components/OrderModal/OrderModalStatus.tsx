@@ -19,12 +19,12 @@ export function OrderModalStatus({ status }: Props) {
 
   return (
     <section className="flex flex-col gap-2">
-      <span className="font-medium text-body-small text-gray-500">
+      <span className="font-medium text-gray-500 text-sm">
         Status do pedido
       </span>
       <div className="flex items-center gap-2">
         <span>{iconByOrderStatus[status]}</span>
-        <strong className="font-semibold text-body-medium">
+        <strong className="font-semibold text-base">
           {statusLabelByOrderStatus[status]}
         </strong>
       </div>

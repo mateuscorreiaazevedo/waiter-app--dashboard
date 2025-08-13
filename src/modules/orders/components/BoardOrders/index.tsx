@@ -1,9 +1,23 @@
+import { useMemo } from 'react';
 import { useFetchOrders } from '../../hooks/useFetchOrders';
 import { BoardOrderItem } from './BoardOrdersItem';
 import { BoardOrdersSkeleton } from './BoardOrdersSkeleton';
 
 export function BoardOrders() {
   const { orders, isOrdersFetched, loadingOrders } = useFetchOrders();
+
+  const waitingOrders = useMemo(
+    () => orders?.filter(order => order.status === 'WAITING'),
+    [orders]
+  );
+  const inProductionOrders = useMemo(
+    () => orders?.filter(order => order.status === 'IN_PRODUCTION'),
+    [orders]
+  );
+  const doneOrders = useMemo(
+    () => orders?.filter(order => order.status === 'DONE'),
+    [orders]
+  );
 
   if (loadingOrders) {
     return <BoardOrdersSkeleton />;
@@ -15,19 +29,15 @@ export function BoardOrders() {
         <>
           <BoardOrderItem
             icon="🕒"
-            orders={orders?.filter(order => order.status === 'WAITING')}
+            orders={waitingOrders}
             title="Fila de espera"
           />
           <BoardOrderItem
             icon="👩‍🍳"
-            orders={orders?.filter(order => order.status === 'IN_PRODUCTION')}
+            orders={inProductionOrders}
             title="Em produção"
           />
-          <BoardOrderItem
-            icon="✅"
-            orders={orders?.filter(order => order.status === 'DONE')}
-            title="Pronto"
-          />
+          <BoardOrderItem icon="✅" orders={doneOrders} title="Pronto" />
         </>
       )}
     </div>

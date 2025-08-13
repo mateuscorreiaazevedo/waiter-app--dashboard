@@ -16,7 +16,7 @@ export interface HttpError {
 }
 
 export interface HttpClient {
-  query<TData = unknown, TBody = unknown>(
+  request<TData = unknown, TBody = unknown>(
     props: HttpRequest<TBody>
   ): Promise<HttpResponse<TData>>;
 }

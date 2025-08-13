@@ -16,7 +16,7 @@ class HttpClientService implements HttpClient {
     });
   }
 
-  async query<TData = unknown, TBody = unknown>(
+  async request<TData = unknown, TBody = unknown>(
     request: HttpRequest<TBody>
   ): Promise<HttpResponse<TData>> {
     const { url, method = 'GET', body, headers, params } = request;

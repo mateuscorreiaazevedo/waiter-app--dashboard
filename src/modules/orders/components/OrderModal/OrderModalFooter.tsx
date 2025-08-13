@@ -32,14 +32,8 @@ export function OrderModalFooter({ onClose, status, orderId }: Props) {
   }
 
   async function handleChangeStatusOrder() {
-    const statusValue: Record<OrderStatusType, OrderStatusType> = {
-      WAITING: 'IN_PRODUCTION',
-      IN_PRODUCTION: 'DONE',
-      DONE: 'DONE',
-    };
-
     await onChangeStatusOrder(
-      { orderId, status: statusValue[status] },
+      { orderId, status: status === 'WAITING' ? 'IN_PRODUCTION' : 'DONE' },
       {
         onSuccess: () => {
           onClose();

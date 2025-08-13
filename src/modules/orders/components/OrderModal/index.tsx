@@ -18,22 +18,6 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   useClickOutside<HTMLDivElement>(contentRef, onClose);
 
-  function handleActionModal() {
-    switch (order?.status) {
-      case 'WAITING':
-        alert('Aguardando produção');
-        break;
-      case 'IN_PRODUCTION':
-        alert('Em produção');
-        break;
-      case 'DONE':
-        alert('Pronto');
-        break;
-      default:
-        break;
-    }
-  }
-
   if (!(visible && order)) {
     return null;
   }
@@ -63,7 +47,6 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
             </article>
             <OrderModalFooter
               onClose={onClose}
-              onConfirm={handleActionModal}
               orderId={order._id}
               status={order.status}
             />

@@ -1,22 +1,19 @@
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/modules/core/components/ui';
 import { useCancelOrder } from '../../hooks/useCancelOrder';
+import { useChangeStatusOrder } from '../../hooks/useChangeStatusOrder';
 import type { OrderStatusType } from '../../types/OrderStatusType';
 
 type Props = {
   status: OrderStatusType;
   onClose: VoidFunction;
-  onConfirm: VoidFunction;
   orderId: string;
 };
 
-export function OrderModalFooter({
-  onClose,
-  onConfirm,
-  status,
-  orderId,
-}: Props) {
+export function OrderModalFooter({ onClose, status, orderId }: Props) {
   const { onCancelOrder, isCancelOrderPending } = useCancelOrder();
+  const { onChangeStatusOrder, isChangeStatusOrderPending } =
+    useChangeStatusOrder();
 
   const buttonLabelByOrderStatus: Partial<Record<OrderStatusType, string>> = {
     WAITING: 'Iniciar produção',
@@ -34,25 +31,57 @@ export function OrderModalFooter({
     );
   }
 
+  async function handleChangeStatusOrder() {
+    const statusValue: Record<OrderStatusType, OrderStatusType> = {
+      WAITING: 'IN_PRODUCTION',
+      IN_PRODUCTION: 'DONE',
+      DONE: 'DONE',
+    };
+
+    await onChangeStatusOrder(
+      { orderId, status: statusValue[status] },
+      {
+        onSuccess: () => {
+          onClose();
+        },
+      }
+    );
+  }
+
   return (
-    <footer className="flex items-center justify-between">
-      <Button
-        disabled={isCancelOrderPending}
-        onClick={handleCancelOrder}
-        type="button"
-        variant="secondary"
-      >
-        {isCancelOrderPending && (
-          <>
-            <Loader2 className="mr-1 size-5 animate-spin text-primary duration-[2s]" />
-            Cancelando...
-          </>
-        )}
-        {!isCancelOrderPending && 'Cancelar pedido'}
-      </Button>
+    <footer
+      className={`flex items-center ${status === 'WAITING' ? 'justify-between' : 'justify-end'}`}
+    >
+      {status === 'WAITING' && (
+        <Button
+          disabled={isCancelOrderPending}
+          onClick={handleCancelOrder}
+          type="button"
+          variant="secondary"
+        >
+          {isCancelOrderPending && (
+            <>
+              <Loader2 className="mr-1 size-5 animate-spin text-primary duration-[2s]" />
+              Cancelando...
+            </>
+          )}
+          {!isCancelOrderPending && 'Cancelar pedido'}
+        </Button>
+      )}
       {status !== 'DONE' && (
-        <Button onClick={onConfirm} type="button" variant="primary">
-          {buttonLabelByOrderStatus[status]}
+        <Button
+          disabled={isChangeStatusOrderPending}
+          onClick={handleChangeStatusOrder}
+          type="button"
+          variant="primary"
+        >
+          {isChangeStatusOrderPending && (
+            <>
+              <Loader2 className="mr-1 size-5 animate-spin text-text-foreground duration-[2s]" />
+              Aguarde...
+            </>
+          )}
+          {!isChangeStatusOrderPending && buttonLabelByOrderStatus[status]}
         </Button>
       )}
     </footer>

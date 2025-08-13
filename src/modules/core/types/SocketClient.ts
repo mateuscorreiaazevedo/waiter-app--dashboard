@@ -19,18 +19,15 @@ export interface SocketClient {
   emit<TData = unknown, TResponse = unknown>(
     request: SocketRequest<TData>
   ): Promise<SocketResponse<TResponse>>;
-  
-  on<TData = unknown>(
-    event: string,
-    callback: (data: TData) => void
-  ): void;
-  
+
+  on<TData = unknown>(event: string, callback: (data: TData) => void): void;
+
   off(event: string, callback?: (...args: unknown[]) => void): void;
-  
+
   connect(): void;
-  
+
   disconnect(): void;
-  
+
   isConnected(): boolean;
 }
 

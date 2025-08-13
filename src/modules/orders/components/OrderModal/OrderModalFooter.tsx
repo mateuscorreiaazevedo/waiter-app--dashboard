@@ -15,10 +15,8 @@ export function OrderModalFooter({ onClose, status, orderId }: Props) {
   const { onChangeStatusOrder, isChangeStatusOrderPending } =
     useChangeStatusOrder();
 
-  const buttonLabelByOrderStatus: Partial<Record<OrderStatusType, string>> = {
-    WAITING: 'Iniciar produção',
-    IN_PRODUCTION: 'Concluir pedido',
-  };
+  const buttonLabelByOrderStatus =
+    status === 'WAITING' ? 'Iniciar produção' : 'Concluir pedido';
 
   async function handleCancelOrder() {
     await onCancelOrder(
@@ -75,7 +73,7 @@ export function OrderModalFooter({ onClose, status, orderId }: Props) {
               Aguarde...
             </>
           )}
-          {!isChangeStatusOrderPending && buttonLabelByOrderStatus[status]}
+          {!isChangeStatusOrderPending && buttonLabelByOrderStatus}
         </Button>
       )}
     </footer>

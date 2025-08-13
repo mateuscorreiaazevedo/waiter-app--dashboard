@@ -1,7 +1,6 @@
 import '../assets/styles/globals.css';
-import { BoardOrders } from '@/components/features/orders/board-orders';
-import { QueryProvider } from '@/modules/core';
-import { Content, Header } from '@/modules/core/components/layout';
+import { Content, Header, QueryProvider } from '@/modules/core';
+import { BoardOrders } from '@/modules/orders';
 
 export function App() {
   return (

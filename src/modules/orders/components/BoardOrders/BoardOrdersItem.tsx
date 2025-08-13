@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import type { Order } from '@/types/features/orders';
-import { OrderModal } from './order-modal';
+import type { OrderModel } from '../../models/Order';
+import { OrderModal } from '../OrderModal';
 
 export type BoardOrderProps = {
   icon: string;
   title: string;
-  orders?: Order[];
+  orders?: OrderModel[];
 };
 
 export function BoardOrderItem({ icon, title, orders }: BoardOrderProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<OrderModel | null>(null);
 
-  function handleOpenOrder(order: Order) {
+  function handleOpenOrder(order: OrderModel) {
     setSelectedOrder(order);
     setIsModalVisible(true);
   }

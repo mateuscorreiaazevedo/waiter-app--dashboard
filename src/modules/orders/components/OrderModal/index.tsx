@@ -1,16 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMemo, useRef } from 'react';
-import { useClickOutside } from '@/hooks/shared';
-import type { Order } from '@/types/features/orders';
-import { OrderModalFooter } from './order-modal-footer';
-import { OrderModalHeader } from './order-modal-header';
-import { OrderModalItems } from './order-modal-items';
-import { OrderModalStatus } from './order-modal-status';
+import { useClickOutside } from '@/modules/core';
+import type { OrderModel } from '../../models/Order';
+import { OrderModalFooter } from './OrderModalFooter';
+import { OrderModalHeader } from './OrderModalHeader';
+import { OrderModalItems } from './OrderModalItems';
+import { OrderModalStatus } from './OrderModalStatus';
 
 type OrderModalProps = {
   visible: boolean;
   onClose: () => void;
-  order: Order | null;
+  order: OrderModel | null;
 };
 
 export function OrderModal({ visible, onClose, order }: OrderModalProps) {

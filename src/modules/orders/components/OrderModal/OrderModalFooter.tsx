@@ -1,14 +1,14 @@
 import { Button } from '@/modules/core/components/ui';
-import type { OrderStatus } from '@/types/features/orders';
+import type { OrderStatusType } from '../../types/OrderStatusType';
 
 type Props = {
-  status: OrderStatus;
+  status: OrderStatusType;
   onClose: VoidFunction;
   onConfirm: VoidFunction;
 };
 
 export function OrderModalFooter({ onClose, onConfirm, status }: Props) {
-  const buttonLabelByOrderStatus: Partial<Record<OrderStatus, string>> = {
+  const buttonLabelByOrderStatus: Partial<Record<OrderStatusType, string>> = {
     WAITING: 'Iniciar produção',
     IN_PRODUCTION: 'Concluir pedido',
   };

@@ -1,26 +1,32 @@
-import { type HttpResponse, HttpStatusCode } from '@/services/http';
+import {
+  type HttpError,
+  type HttpResponse,
+  HttpStatusCode,
+} from '../types/HttpClient';
 
-export function handleHttpUtil<T = unknown>(httpResponse: HttpResponse<T>) {
-  const { statusCode, body } = httpResponse;
+type HandleHttpResponseType<T = unknown> = HttpResponse<T & HttpError>;
 
-  switch (statusCode) {
+export function handleHttpUtil<T = unknown>(
+  response: HandleHttpResponseType<T>
+) {
+  switch (response.statusCode) {
     case HttpStatusCode.OK:
-      return body;
+      return response.data!;
     case HttpStatusCode.CREATED:
-      return body;
+      return response.data!;
     case HttpStatusCode.NO_CONTENT:
-      return body;
+      return response.data!;
     case HttpStatusCode.BAD_REQUEST:
-      throw body;
+      throw new Error(response.data!.message);
     case HttpStatusCode.UNAUTHORIZED:
-      throw body;
+      throw new Error(response.data!.message);
     case HttpStatusCode.FORBIDDEN:
-      throw body;
+      throw new Error(response.data!.message);
     case HttpStatusCode.NOT_FOUND:
-      throw body;
+      throw new Error(response.data!.message);
     case HttpStatusCode.INTERNAL_SERVER_ERROR:
-      throw body;
+      throw new Error(response.data!.message);
     default:
-      throw new Error('Unexpected Error');
+      throw new Error(response.data!.message);
   }
 }

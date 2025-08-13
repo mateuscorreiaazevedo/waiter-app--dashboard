@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import type { OrderProductRef } from '@/types/features/orders';
-import { CurrencyHelper } from '@/util/helpers';
+import { CurrencyHelper } from '@/modules/core';
+import type { OrderProductModel } from '../../models/OrderProduct';
 
 type Props = {
-  products: OrderProductRef[];
+  products: OrderProductModel[];
 };
 
 export function OrderModalItems({ products }: Props) {

@@ -1,17 +1,17 @@
-import type { OrderStatus } from '@/types/features/orders';
+import type { OrderStatusType } from '@/modules/orders';
 
 type Props = {
-  status: OrderStatus;
+  status: OrderStatusType;
 };
 
 export function OrderModalStatus({ status }: Props) {
-  const iconByOrderStatus: Record<OrderStatus, string> = {
+  const iconByOrderStatus: Record<OrderStatusType, string> = {
     WAITING: '🕒',
     IN_PRODUCTION: '👩‍🍳',
     DONE: '✅',
   };
 
-  const statusLabelByOrderStatus: Record<OrderStatus, string> = {
+  const statusLabelByOrderStatus: Record<OrderStatusType, string> = {
     WAITING: 'Fila de espera',
     IN_PRODUCTION: 'Em produção',
     DONE: 'Pronto',

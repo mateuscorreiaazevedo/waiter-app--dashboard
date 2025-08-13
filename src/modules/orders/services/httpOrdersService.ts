@@ -1,5 +1,6 @@
 import { handleHttpUtil, httpClientService } from '@/modules/core';
 import type { OrderModel } from '../models/Order';
+import type { CancelOrderRequestType } from '../types/CancelOrderRequestType';
 import type { OrdersServiceInterface } from './OrderServiceInterface';
 
 class HttpOrdersService implements OrdersServiceInterface {
@@ -8,9 +9,22 @@ class HttpOrdersService implements OrdersServiceInterface {
       url: '/orders',
     });
 
-    const result = handleHttpUtil(response);
+    const result = handleHttpUtil<OrderModel[]>(response);
+
+    if (!result) {
+      throw new Error('Orders not found');
+    }
 
     return result;
+  }
+
+  async cancelOrder({ orderId }: CancelOrderRequestType): Promise<void> {
+    const response = await httpClientService.request<void>({
+      url: `/orders/${orderId}`,
+      method: 'DELETE',
+    });
+
+    handleHttpUtil({ statusCode: response.statusCode });
   }
 }
 

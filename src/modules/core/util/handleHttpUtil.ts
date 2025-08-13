@@ -8,14 +8,14 @@ type HandleHttpResponseType<T = unknown> = HttpResponse<T & HttpError>;
 
 export function handleHttpUtil<T = unknown>(
   response: HandleHttpResponseType<T>
-) {
+): T | undefined {
   switch (response.statusCode) {
     case HttpStatusCode.OK:
       return response.data!;
     case HttpStatusCode.CREATED:
       return response.data!;
     case HttpStatusCode.NO_CONTENT:
-      return response.data!;
+      return;
     case HttpStatusCode.BAD_REQUEST:
       throw new Error(response.data!.message);
     case HttpStatusCode.UNAUTHORIZED:

@@ -64,6 +64,7 @@ export function OrderModal({ visible, onClose, order }: OrderModalProps) {
             <OrderModalFooter
               onClose={onClose}
               onConfirm={handleActionModal}
+              orderId={order._id}
               status={order.status}
             />
           </motion.div>

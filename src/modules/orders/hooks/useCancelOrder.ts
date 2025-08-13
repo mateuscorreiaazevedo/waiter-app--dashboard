@@ -28,6 +28,12 @@ export function useCancelOrder() {
         return;
       }
       const newOrders = [...orders];
+      const item = orders[orderIndex];
+
+      toast.success(`O Pedido da mesa ${item.table} cancelado com sucesso`, {
+        icon: '🔔',
+      });
+
       newOrders.splice(orderIndex, 1);
 
       client.setQueryData<OrderModel[]>(['listOrders'], newOrders);

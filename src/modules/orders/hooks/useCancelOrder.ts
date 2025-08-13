@@ -30,9 +30,12 @@ export function useCancelOrder() {
       const newOrders = [...orders];
       const item = orders[orderIndex];
 
-      toast.success(`O Pedido da mesa ${item.table} cancelado com sucesso`, {
-        icon: '🔔',
-      });
+      toast.success(
+        `O Pedido da mesa ${item.table} ${item.status === 'WAITING' ? 'cancelado' : 'deletado'} com sucesso.`,
+        {
+          icon: '🔔',
+        }
+      );
 
       newOrders.splice(orderIndex, 1);
 

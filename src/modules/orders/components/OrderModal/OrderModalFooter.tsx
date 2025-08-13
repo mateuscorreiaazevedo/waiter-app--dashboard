@@ -44,7 +44,7 @@ export function OrderModalFooter({ onClose, status, orderId }: Props) {
     <footer
       className={`flex items-center ${status === 'WAITING' ? 'justify-between' : 'justify-end'}`}
     >
-      {status === 'WAITING' && (
+      {status !== 'IN_PRODUCTION' && (
         <Button
           disabled={isCancelOrderPending}
           onClick={handleCancelOrder}
@@ -54,10 +54,11 @@ export function OrderModalFooter({ onClose, status, orderId }: Props) {
           {isCancelOrderPending && (
             <>
               <Loader2 className="mr-1 size-5 animate-spin text-primary duration-[2s]" />
-              Cancelando...
+              {status === 'WAITING' ? 'Cancelando...' : 'Deletando...'}
             </>
           )}
-          {!isCancelOrderPending && 'Cancelar pedido'}
+          {!isCancelOrderPending &&
+            (status === 'WAITING' ? 'Cancelar pedido' : 'Deletar pedido')}
         </Button>
       )}
       {status !== 'DONE' && (

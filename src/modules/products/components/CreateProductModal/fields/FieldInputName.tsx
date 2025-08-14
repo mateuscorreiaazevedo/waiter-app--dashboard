@@ -9,12 +9,19 @@ export function CreateProductFieldInputName() {
     <Controller
       control={control}
       name="name"
-      render={({ field }) => (
-        <Input
-          label="Nome do produto"
-          placeholder="Pizza quatro queijos"
-          {...field}
-        />
+      render={({ field, fieldState }) => (
+        <div className="flex flex-col gap-0.5">
+          <Input
+            label="Nome do produto"
+            placeholder="Pizza quatro queijos"
+            {...field}
+          />
+          {fieldState.error && (
+            <span className="text-danger text-sm">
+              {fieldState.error.message}
+            </span>
+          )}
+        </div>
       )}
     />
   );

@@ -9,13 +9,20 @@ export function CreateProductFieldTextareaDescription() {
     <Controller
       control={control}
       name="description"
-      render={({ field }) => (
-        <Textarea
-          className="h-28 resize-none"
-          label="Descrição"
-          placeholder="Informe uma descrição para o seu novo produto"
-          {...field}
-        />
+      render={({ field, fieldState }) => (
+        <div className="flex flex-col gap-0.5">
+          <Textarea
+            className="h-28 resize-none"
+            label="Descrição"
+            placeholder="Informe uma descrição para o seu novo produto"
+            {...field}
+          />
+          {fieldState.error && (
+            <span className="text-danger text-sm">
+              {fieldState.error.message}
+            </span>
+          )}
+        </div>
       )}
     />
   );

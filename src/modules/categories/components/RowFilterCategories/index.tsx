@@ -15,7 +15,6 @@ export function RowFilterCategories({
 
   return (
     <div className="flex min-h-[74px] flex-col">
-      <span className="text-sm">Categorias</span>
       <div className="flex max-w-full flex-1 items-center gap-2 overflow-x-auto">
         {isLoading && <RowFilterCategoriesSkeleton />}
 

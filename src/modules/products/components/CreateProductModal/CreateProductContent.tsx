@@ -13,10 +13,18 @@ export function CreateProductContent() {
     resolver: zodResolver(createProductSchema),
   });
 
+  const handleSubmit = form.handleSubmit(data => {
+    // biome-ignore lint/suspicious/noConsole: for test submit handler
+    console.log(data);
+  });
+
   return (
     <FormProvider {...form}>
-      <form className="mt-6 flex flex-1 flex-col justify-between">
-        <article className="flex flex-1 flex-col gap-3">
+      <form
+        className="mt-6 flex flex-1 flex-col justify-between"
+        onSubmit={handleSubmit}
+      >
+        <article className="flex max-h-[calc(100vh-172px)] flex-col gap-3 overflow-y-auto pb-8">
           <CreateProductFieldInputName />
           <CreateProductFieldTextareaDescription />
           <CreateProductFieldInputPrice />

@@ -21,13 +21,20 @@ export function CreateProductFieldInputPrice() {
     <Controller
       control={control}
       name="price"
-      render={({ field: { onChange, ...field } }) => (
-        <Input
-          label="Preço (R$)"
-          onChange={e => formatCurrency(e, onChange)}
-          placeholder="R$ 10,00"
-          {...field}
-        />
+      render={({ field: { onChange, ...field }, fieldState }) => (
+        <div className="flex flex-col gap-0.5">
+          <Input
+            label="Preço (R$)"
+            onChange={e => formatCurrency(e, onChange)}
+            placeholder="R$ 10,00"
+            {...field}
+          />
+          {fieldState.error && (
+            <span className="text-danger text-sm">
+              {fieldState.error.message}
+            </span>
+          )}
+        </div>
       )}
     />
   );

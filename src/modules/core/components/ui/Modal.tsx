@@ -40,14 +40,12 @@ export function Modal({
   }
 
   return (
-    <motion.div
-      animate={{ opacity: 1 }}
+    <div
       className={clsx(
-        'fixed inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-xs',
-        modalType === 'dialog' ? 'items-center' : 'justify-end'
+        'fixed inset-0 z-10 flex items-center justify-center bg-black/80 backdrop-blur-xs transition-all duration-1000',
+        modalType === 'dialog' ? 'items-center' : 'justify-end',
+        visible ? 'opacity-100' : 'opacity-0'
       )}
-      initial={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
     >
       <AnimatePresence>
         {visible && (
@@ -75,6 +73,6 @@ export function Modal({
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

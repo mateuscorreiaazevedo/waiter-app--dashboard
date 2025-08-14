@@ -1,6 +1,8 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-  "extends": ["ultracite"],
+  "extends": [
+    "ultracite"
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
@@ -10,7 +12,9 @@
     }
   },
   "files": {
-    "includes": ["./src/**/*"],
+    "includes": [
+      "./src/**/*"
+    ],
     "ignoreUnknown": true
   },
   "css": {
@@ -38,7 +42,8 @@
         "noEmptyBlockStatements": "off"
       },
       "performance": {
-        "noImgElement": "off"
+        "noImgElement": "off",
+        "useTopLevelRegex": "off"
       },
       "correctness": {
         "useHookAtTopLevel": "off",

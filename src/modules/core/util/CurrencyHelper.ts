@@ -5,4 +5,13 @@ export class CurrencyHelper {
       currency: 'BRL',
     });
   }
+
+  static maskCurrencyBRL(currencyValue: string): string {
+    let value = currencyValue
+      .replace(/\D/g, '')
+      .replace(/(\d)(\d{2})$/, '$1,$2');
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    return `R$ ${value}`;
+  }
 }

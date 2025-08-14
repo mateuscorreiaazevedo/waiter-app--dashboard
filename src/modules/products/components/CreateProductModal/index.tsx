@@ -13,7 +13,7 @@ export function CreateProductModal({
 }: CreateProductModalProps) {
   return (
     <Modal
-      className="flex min-w-1/4 flex-col rounded-l-2xl bg-white p-6"
+      className="flex w-[560px] flex-col rounded-l-2xl bg-gray-100 p-6"
       modalType="sheet"
       onClose={onClose}
       visible={visible}

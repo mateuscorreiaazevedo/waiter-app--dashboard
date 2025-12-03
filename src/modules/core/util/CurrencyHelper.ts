@@ -14,4 +14,14 @@ export class CurrencyHelper {
 
     return `R$ ${value}`;
   }
+
+  static parseBRLToNumber(brlValue: string): number {
+    const cleanValue = brlValue
+      .replace('R$', '')
+      .replace('.', '')
+      .replace(',', '.')
+      .trim();
+
+    return Number(cleanValue);
+  }
 }

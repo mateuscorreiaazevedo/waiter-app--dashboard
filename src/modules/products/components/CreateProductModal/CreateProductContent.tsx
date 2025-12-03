@@ -6,7 +6,7 @@ import { createProductSchema } from '../../util/createProductSchema';
 import { CreateProductFieldInputName } from './fields/FieldInputName';
 import { CreateProductFieldInputPrice } from './fields/FieldInputPrice';
 import { CreateProductFieldSelectCategory } from './fields/FieldSelectCategory';
-import { CreateProductFieldTextareaDescription } from './fields/FieldTextAreaDescription';
+import { CreateProductFieldTextareaDescription } from './fields/FieldTextareaDescription';
 
 export function CreateProductContent() {
   const form = useForm<CreateProductSchemaType>({
@@ -24,7 +24,7 @@ export function CreateProductContent() {
         className="mt-6 flex flex-1 flex-col justify-between"
         onSubmit={handleSubmit}
       >
-        <article className="flex max-h-[calc(100vh-172px)] flex-col gap-3 overflow-y-auto pb-8">
+        <article className="flex max-h-[calc(100vh-172px)] flex-col gap-3 overflow-y-auto px-2 pb-8">
           <CreateProductFieldInputName />
           <CreateProductFieldTextareaDescription />
           <CreateProductFieldInputPrice />

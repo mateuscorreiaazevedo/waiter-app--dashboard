@@ -1,4 +1,5 @@
 import z from 'zod';
+import { CurrencyHelper } from '@/modules/core';
 
 export const createProductSchema = z.object({
   name: z
@@ -12,11 +13,7 @@ export const createProductSchema = z.object({
   price: z
     .string({ error: () => ({ message: 'Preço deve ser informado' }) })
     .refine(value => {
-      const cleanValue = value
-        .replace('R$', '')
-        .replace('.', '')
-        .replace(',', '.');
-      const price = Number(cleanValue);
+      const price = CurrencyHelper.parseBRLToNumber(value);
 
       return price > 0;
     }, 'Preço deve ser maior que 0'),
@@ -24,7 +21,9 @@ export const createProductSchema = z.object({
     .string({ error: () => ({ message: 'Categoria deve ser selecionada' }) })
     .nonempty('Categoria deve ser selecionada'),
   image: z
-    .instanceof(File)
+    .instanceof(File, {
+      error: () => ({ message: 'Imagem do produto deve ser enviada' }),
+    })
     .refine(file => file.size <= 5 * 1024 * 1024, {
       message: 'Imagem deve ter no máximo 5MB',
     })

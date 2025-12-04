@@ -1,15 +1,15 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Button, CurrencyHelper, FileInput } from "@/modules/core";
-import { useCreateProduct } from "../../hooks/useCreateProduct";
-import type { CreateProductSchemaType } from "../../types/CreateProductSchemaType";
-import { createProductSchema } from "../../util/createProductSchema";
-import { CreateProductFieldInputName } from "./fields/FieldInputName";
-import { CreateProductFieldInputPrice } from "./fields/FieldInputPrice";
-import { CreateProductFieldSelectCategory } from "./fields/FieldSelectCategory";
-import { CreateProductFieldTextareaDescription } from "./fields/FieldTextareaDescription";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Button, CurrencyHelper, FileInput } from '@/modules/core';
+import { useCreateProduct } from '../../hooks/useCreateProduct';
+import type { CreateProductSchemaType } from '../../types/CreateProductSchemaType';
+import { createProductSchema } from '../../util/createProductSchema';
+import { CreateProductFieldInputName } from './fields/FieldInputName';
+import { CreateProductFieldInputPrice } from './fields/FieldInputPrice';
+import { CreateProductFieldSelectCategory } from './fields/FieldSelectCategory';
+import { CreateProductFieldTextareaDescription } from './fields/FieldTextareaDescription';
 
 interface CreateProductContentProps {
   onClose?: VoidFunction;
@@ -22,7 +22,7 @@ export function CreateProductContent({ onClose }: CreateProductContentProps) {
   const { isCreatingProduct, onCreateProduct } = useCreateProduct();
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = form.handleSubmit((data) => {
+  const handleSubmit = form.handleSubmit(data => {
     onCreateProduct(
       {
         ...data,
@@ -33,7 +33,7 @@ export function CreateProductContent({ onClose }: CreateProductContentProps) {
           setError(err.message);
         },
         onSuccess() {
-          toast.success("Produto cadastrado com sucesso!");
+          toast.success('Produto cadastrado com sucesso!');
           form.reset();
           onClose?.();
         },
@@ -64,9 +64,9 @@ export function CreateProductContent({ onClose }: CreateProductContentProps) {
           className="flex items-center justify-center"
           disabled={isCreatingProduct}
           type="submit"
-          variant={"primary"}
+          variant={'primary'}
         >
-          {isCreatingProduct ? "Salvando..." : "Salvar"}
+          {isCreatingProduct ? 'Salvando...' : 'Salvar'}
         </Button>
       </form>
     </FormProvider>

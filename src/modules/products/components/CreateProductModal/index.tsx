@@ -1,6 +1,6 @@
-import { Modal } from '@/modules/core';
-import { CreateProductContent } from './CreateProductContent';
-import { CreateProductModalHeader } from './CreateProductModalHeader';
+import { Modal } from "@/modules/core";
+import { CreateProductContent } from "./CreateProductContent";
+import { CreateProductModalHeader } from "./CreateProductModalHeader";
 
 interface CreateProductModalProps {
   visible: boolean;
@@ -19,7 +19,7 @@ export function CreateProductModal({
       visible={visible}
     >
       <CreateProductModalHeader onClose={onClose} />
-      <CreateProductContent />
+      <CreateProductContent onClose={onClose} />
     </Modal>
   );
 }

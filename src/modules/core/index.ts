@@ -8,4 +8,5 @@ export * from './services/socketClientService';
 export * from './types/HttpClient';
 export * from './types/SocketClient';
 export * from './util/CurrencyHelper';
+export * from './util/formDataHelper';
 export * from './util/handleHttpUtil';

@@ -1,21 +1,44 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, useForm } from 'react-hook-form';
-import { Button, FileInput } from '@/modules/core';
-import type { CreateProductSchemaType } from '../../types/CreateProductSchemaType';
-import { createProductSchema } from '../../util/createProductSchema';
-import { CreateProductFieldInputName } from './fields/FieldInputName';
-import { CreateProductFieldInputPrice } from './fields/FieldInputPrice';
-import { CreateProductFieldSelectCategory } from './fields/FieldSelectCategory';
-import { CreateProductFieldTextareaDescription } from './fields/FieldTextareaDescription';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Button, CurrencyHelper, FileInput } from "@/modules/core";
+import { useCreateProduct } from "../../hooks/useCreateProduct";
+import type { CreateProductSchemaType } from "../../types/CreateProductSchemaType";
+import { createProductSchema } from "../../util/createProductSchema";
+import { CreateProductFieldInputName } from "./fields/FieldInputName";
+import { CreateProductFieldInputPrice } from "./fields/FieldInputPrice";
+import { CreateProductFieldSelectCategory } from "./fields/FieldSelectCategory";
+import { CreateProductFieldTextareaDescription } from "./fields/FieldTextareaDescription";
 
-export function CreateProductContent() {
+interface CreateProductContentProps {
+  onClose?: VoidFunction;
+}
+
+export function CreateProductContent({ onClose }: CreateProductContentProps) {
   const form = useForm<CreateProductSchemaType>({
     resolver: zodResolver(createProductSchema),
   });
+  const { isCreatingProduct, onCreateProduct } = useCreateProduct();
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = form.handleSubmit(data => {
-    // biome-ignore lint/suspicious/noConsole: for test submit handler
-    console.log(data);
+  const handleSubmit = form.handleSubmit((data) => {
+    onCreateProduct(
+      {
+        ...data,
+        price: CurrencyHelper.parseBRLToNumber(data.price),
+      },
+      {
+        onError(err) {
+          setError(err.message);
+        },
+        onSuccess() {
+          toast.success("Produto cadastrado com sucesso!");
+          form.reset();
+          onClose?.();
+        },
+      }
+    );
   });
 
   return (
@@ -25,6 +48,12 @@ export function CreateProductContent() {
         onSubmit={handleSubmit}
       >
         <article className="flex max-h-[calc(100vh-172px)] flex-col gap-3 overflow-y-auto px-2 pb-8">
+          {error && (
+            <div className="rounded-md bg-red-50 p-4">
+              <p className="text-red-700 text-sm">{error}</p>
+            </div>
+          )}
+
           <CreateProductFieldInputName />
           <CreateProductFieldTextareaDescription />
           <CreateProductFieldInputPrice />
@@ -33,10 +62,11 @@ export function CreateProductContent() {
         </article>
         <Button
           className="flex items-center justify-center"
+          disabled={isCreatingProduct}
           type="submit"
-          variant={'primary'}
+          variant={"primary"}
         >
-          Salvar
+          {isCreatingProduct ? "Salvando..." : "Salvar"}
         </Button>
       </form>
     </FormProvider>
